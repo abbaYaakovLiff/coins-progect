@@ -1,0 +1,8 @@
+<p>home works!</p>
+
+<app-coins></app-coins>
+<ng-container *ngFor='let coin of coins; let i = index'>
+    <div>
+        <app-coins [coin]='coin'> </app-coins>
+    </div>
+</ng-container>
