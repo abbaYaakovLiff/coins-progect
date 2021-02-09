@@ -8,12 +8,13 @@ import { CoinModel } from 'src/app/models/cion.model';
   providedIn: 'root'
 })
 export class GetCoinsService {
-  httpClient: any;
+  
 
-  constructor() { }
-  get(aa:string): Observable<CoinModel> {
+  constructor(private httpClient: HttpClient) { }
+
+  get(api:string): Observable<any> {
  
-    return this.httpClient.get(aa);
+    return this.httpClient.get<any>(api);
       
 }
 }

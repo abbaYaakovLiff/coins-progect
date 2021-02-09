@@ -1,2 +1,19 @@
-<p>coins works!</p>
-<div>{{coin}}</div>
+<div class="col-3"></div>
+<div class="card " style="width: 18rem;">
+    <div class="card-body">
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" [id]="coin.symbol">
+            <label class="custom-control-label" [for]="coin.symbol"></label>
+        </div>
+        <h5 class="card-title">{{coin.symbol}}</h5>
+        <p class="card-text">{{coin.id}}</p>
+        <div class="container">
+
+            <a href="#coin-info" (click)=getInfo(coin.id) class="btn btn-primary" data-toggle="collapse">more info</a>
+            <div id="coin-info" class="collapse">
+                Lorem ipsum dolor sit amet,
+
+            </div>
+        </div>
+    </div>
+</div>
