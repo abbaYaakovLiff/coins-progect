@@ -9,7 +9,7 @@ import { CoinModel } from 'src/app/models/cion.model';
 })
 export class GetCoinsService {
   
-
+  coinsList: CoinModel[] = [];
   constructor(private httpClient: HttpClient) { }
 
   get(api:string): Observable<any> {

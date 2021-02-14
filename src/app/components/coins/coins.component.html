@@ -1,5 +1,5 @@
 <div class="col-3"></div>
-<div class="card " style="width: 18rem;">
+<div class="card " style="width: 16rem;">
     <div class="card-body">
         <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" [id]="coin.symbol">
@@ -7,13 +7,40 @@
         </div>
         <h5 class="card-title">{{coin.symbol}}</h5>
         <p class="card-text">{{coin.id}}</p>
-        <div class="container">
 
-            <a href="#coin-info" (click)=getInfo(coin.id) class="btn btn-primary" data-toggle="collapse">more info</a>
-            <div id="coin-info" class="collapse">
-                Lorem ipsum dolor sit amet,
+        <p>
+            <button type="button" class="btn btn-outline-primary" (click)="getInfo(coin.id)">
+                {{moreHide}} Info
+            </button>
+        </p>
+        <div *ngIf="showMoreInfo">
+            <div>
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <!-- spinnner element is 
+                            defined with id loading -->
+                            <ngcontainer *ngIf="!coinInfo.image">
+                        
+                        <div class="d-flex justify-content-center"> 
+                            <div class="spinner-border" role="status"> 
+                                <span class="sr-only" id="loading"></span> 
+                            </div> 
+                        </div> 
+                    </ngcontainer>
+                        <!-- data from API is displayed -->
+                    
+                        <img src="{{coinInfo.image}}">
+                        <br>
+                        {{coinInfo.usd | currency}}
+                        <br>
+                        {{coinInfo.ils | currency:"ILS"}}
+                        <br>
+                        {{this.coinInfo.eur | currency:"EUR"}}
 
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>

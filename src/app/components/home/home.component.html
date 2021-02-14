@@ -1,17 +1,15 @@
-
 <div class="container">
-<form class="form-inline">
-    <input #cionName class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
+<app-search></app-search>
+
+<div class="parallax"></div>
 </div>
 <div class="container">
-<div class="row">
-    
-
-    <div *ngFor="let coin of coins" class="col-3">
-        <app-coins [coin]="coin"></app-coins>
+    <div class="row">
+        <div *ngFor="let coin of coinlist" class="col-3">
+            <app-coins [coin]="coin"></app-coins>
+        </div>
     </div>
-
 </div>
+<div class="container">
+<div class="parallax"></div>
 </div>

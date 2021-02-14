@@ -8,26 +8,23 @@ import { CoinModel } from 'src/app/models/cion.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  coins: CoinModel[] = [];
   
-  constructor(private getCoinsService: GetCoinsService) { 
-  
-  }
+  url:string='https://api.coingecko.com/api/v3/coins';
+  constructor(private getCoinsService: GetCoinsService) {}
 
 
+  coinlist: CoinModel[];
   ngOnInit(): void {
-    this.getcoins('https://api.coingecko.com/api/v3/coins');
+    this.getcoins(this.url);
+    this.coinlist = this.getCoinsService.coinsList;
   }
   getcoins(api: string): void {
     this.getCoinsService.get(api).subscribe((coinsData:any) => {
       for (let i = 0; i < 50; i++) {
-        this.coins.push({symbol: coinsData[i].symbol,id:coinsData[i].id})}
+        this.getCoinsService.coinsList.push({symbol: coinsData[i].symbol,id:coinsData[i].id})}
       }
     )
   }
-  search(coin:string):void {
-     this.coins.filter(
-      c => c.id ===coin);
-  }
+  
   
 }
