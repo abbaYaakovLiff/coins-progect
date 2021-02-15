@@ -16,12 +16,15 @@ export class HomeComponent implements OnInit {
   coinlist: CoinModel[];
   ngOnInit(): void {
     this.getcoins(this.url);
-    this.coinlist = this.getCoinsService.coinsList;
+    this.getCoinsService.getCoinList().subscribe((coinsData:any) => {
+      this.coinlist=coinsData;
+
+    })
   }
   getcoins(api: string): void {
     this.getCoinsService.get(api).subscribe((coinsData:any) => {
       for (let i = 0; i < 50; i++) {
-        this.getCoinsService.coinsList.push({symbol: coinsData[i].symbol,id:coinsData[i].id})}
+        this.getCoinsService.createCoinList({symbol: coinsData[i].symbol,id:coinsData[i].id})}
       }
     )
   }

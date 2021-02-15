@@ -1,4 +1,5 @@
 export interface CoinInfoModel {
+    id:string;
     usd: number;
     ils: number;
     eur: number;

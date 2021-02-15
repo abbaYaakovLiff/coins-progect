@@ -1,11 +1,11 @@
 
- 
-  <form class="form-inline"   >
-    <input #cionName class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button (click)=getcoin(cionName.value) class="btn btn-outline-success my-2 my-sm-0 mr-sm-2"
-        type="submit">Search</button>
+ <form class="form-inline"   >
+  <input #cionName class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button (click)=getcoin(cionName.value) class="btn btn-outline-success my-2 my-sm-0 mr-sm-2"
+      type="submit">Search</button>
 </form>
-<div class="text-left"  >
-  <small class="pr-5 text-danger">No results found</small>
+<div class="text-left" *ngIf="no" >
+<strong class="pr-5 text-danger">No results found</strong>
 </div>
+
 <app-coins *ngIf="coin.symbol" [coin]="coin"></app-coins>

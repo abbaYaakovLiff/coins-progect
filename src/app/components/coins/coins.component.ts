@@ -14,20 +14,21 @@ export class CoinsComponent implements OnInit {
   @Input() coin: CoinModel;
   coinInfo: CoinInfoModel;
   showMoreInfo: boolean;
-  moreHide = "more";
-  
+
+
   constructor(private getinfoservice: GetInfoService) {
-    this.coinInfo = { image: null, usd: null, ils: null, eur: null, createDate: null };
+    this.coinInfo = { id: null, image: null, usd: null, ils: null, eur: null, createDate: null };
     this.showMoreInfo = false;
   }
+
 
   ngOnInit(): void {
   }
   getInfo(coinId: string) {
     if (!this.showMoreInfo) {
-      if (this.coinInfo.createDate + 120000 < Date.now()) {
+      if (this.coinInfo.createDate + 120000 < Date.now() || coinId !== this.coinInfo.id) {
         this.getinfoservice.get(coinId).subscribe((coinsInfoData: any) => {
-         
+          this.coinInfo.id = coinId;
           this.coinInfo.image = coinsInfoData.image.small,
             this.coinInfo.usd = coinsInfoData.market_data.current_price.usd,
             this.coinInfo.ils = coinsInfoData.market_data.current_price.ils,
@@ -36,19 +37,18 @@ export class CoinsComponent implements OnInit {
         })
 
         this.showMoreInfo = true;
-        this.moreHide = "hide";
+
       }
       else {
         this.showMoreInfo = true;
-        this.moreHide = "hide";
+
       }
     }
     else {
-        this.showMoreInfo = false
-        this.moreHide = "more";
+      this.showMoreInfo = false
 
-      }
-    
+    }
+
   }
-  
+
 }

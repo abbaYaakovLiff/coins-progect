@@ -9,20 +9,35 @@ import { GetCoinsService } from 'src/app/services/get-coins.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-coin:CoinModel;
-
-
+  coin: CoinModel;
+  coinlist: CoinModel[];
+  no = false;
   constructor(private getCoinsService: GetCoinsService) {
-    this.coin={symbol:undefined,id:undefined};
-    
+    this.coin = { symbol: undefined, id: undefined };
+
   }
 
   ngOnInit(): void {
+    const newLocal = this.getCoinsService.getCoinList().subscribe((coinsData: any) => {
+      this.coinlist = coinsData;
+    });
+
   }
-  getcoin(cionName:string):void{
- 
-    this.coin.symbol = this.getCoinsService.coinsList.find(find => find.symbol == cionName ).symbol;
-    this.coin.id = this.getCoinsService.coinsList.find(find => find.symbol == cionName ).id;
-   
-}
+  getcoin(cionName: string): void {
+    
+
+  if (this.coinlist.find(find => find.symbol == cionName)) {
+      this.coin = this.coinlist.find(find => find.symbol == cionName)
+      this.no = false
+    }
+    else if(!cionName){
+      this.no = false;
+      this.coin.symbol = null;
+    }
+
+   else {
+      this.no = true;
+      this.coin.symbol = null;
+    }
+  }
 }
